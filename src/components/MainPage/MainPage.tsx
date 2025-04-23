@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import cities from "../../data.json";
 import City from "../../Types/City";
 import Card from "../Card/Card";
-import MainPageHeader from "../MainPageHeader/MainPageHeader";
+import Filters from "../Filters/Filters";
+import Sort from "../Sort/Sort";
 
 const MainPage: React.FC = () => {
   const [activeCities, setActiveCities] = useState<City[]>([]);
@@ -11,23 +12,28 @@ const MainPage: React.FC = () => {
   const [filteredCities, setFilteredCities] = useState<City[]>([]);
 
   const navigate = useNavigate();
-
   useEffect(() => {
     const activeCitiesFromJson = cities.cities.filter((city) => city.active);
     setActiveCities(activeCitiesFromJson);
     setFilteredCities(activeCitiesFromJson);
   }, []);
-
   useEffect(() => {
     console.log(sortedCities, "sddsds");
   }, [sortedCities]);
 
   return (
     <div>
-      <MainPageHeader
+      <Filters
+        cities={sortedCities}
+        onFiltersChanged={(filtersValue) => setFilteredCities(filtersValue)}
+      />
+      <Sort
         cities={activeCities}
-        onFiltersChanged={setFilteredCities}
-        onSortChanged={setSortedCities}
+        onSortChanged={(sorted) => {
+          console.log("Sort change function active");
+          console.log(sorted);
+          setSortedCities(sorted);
+        }}
       />
       {filteredCities.map((city) => (
         <Card
