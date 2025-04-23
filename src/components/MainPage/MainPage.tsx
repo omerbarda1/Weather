@@ -20,9 +20,6 @@ const MainPage: React.FC = () => {
     setActiveCities(activeCitiesFromJson);
     setFilteredCities(activeCitiesFromJson);
   }, []);
-  useEffect(() => {
-    console.log(sortedCities, "sddsds");
-  }, [sortedCities]);
 
   return (
     <div>
@@ -34,8 +31,6 @@ const MainPage: React.FC = () => {
         <Sort
           cities={activeCities}
           onSortChanged={(sorted) => {
-            console.log("Sort change function active");
-            console.log(sorted);
             setSortedCities(sorted);
           }}
         />
