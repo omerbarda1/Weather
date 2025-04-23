@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./Filters.css"
 import debounce from "lodash/debounce";
 import ContinentDropdown from "../ContinentsDropDown";
 import { Continent } from "../../constants/continents";
@@ -8,12 +9,12 @@ interface IFiltersProps {
   cities: City[];
   onFiltersChanged: (filteredCities: City[]) => void;
 }
-interface Filters {
+interface FiltersData {
   citySearchText: string;
   continent: Continent | "";
 }
 const Filters: React.FC<IFiltersProps> = ({ cities, onFiltersChanged }) => {
-  const [filters, setFilters] = useState<Filters>({
+  const [filters, setFilters] = useState<FiltersData>({
     citySearchText: "",
     continent: "",
   });
@@ -33,7 +34,6 @@ const Filters: React.FC<IFiltersProps> = ({ cities, onFiltersChanged }) => {
   };
 
   useEffect(() => {
-    console.log("cities changed");
     const { citySearchText, continent } = filters;
 
     const filteredCities = cities.filter((city) => {
@@ -45,15 +45,19 @@ const Filters: React.FC<IFiltersProps> = ({ cities, onFiltersChanged }) => {
     });
 
     onFiltersChanged(filteredCities);
+    // eslint-disable-next-line
   }, [filters.citySearchText, filters.continent, cities]);
 
   return (
-    <div>
+    <div className="filters-container">
+      <div>
+      <h3> Search </h3>
       <input
         type="text"
         onChange={(e) => handleSearch(e.target.value)}
         placeholder="search a city by name or country"
-      />
+        />
+        </div>
       <ContinentDropdown onSelect={handleContinentChange} />
     </div>
   );

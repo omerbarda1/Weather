@@ -14,13 +14,10 @@ const ContinentDropdown: React.FC<ContinentDropdownProps> = ({ onSelect }) => {
     onSelect(value);
   };
 
-  const handleClear = () => {
-    setSelected("");
-    onSelect("");
-  };
 
   return (
     <div>
+      <h3> continent </h3>
       <select value={selected} onChange={handleChange}>
         <option value="">Select a continent</option>
         {continents.map((continent) => (
@@ -29,7 +26,6 @@ const ContinentDropdown: React.FC<ContinentDropdownProps> = ({ onSelect }) => {
           </option>
         ))}
       </select>
-      <button onClick={handleClear}>Clear</button>
     </div>
   );
 };

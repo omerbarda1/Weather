@@ -32,7 +32,8 @@
 
 .description {
   font-size: 14px;
-  color: #444;
+  color: #ffffff;
   overflow-y: auto;
   font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }

@@ -20,16 +20,16 @@ const Sort: React.FC<ISortProps> = ({ cities, onSortChanged }) => {
       selectedMethod === "name"
         ? citiesCopy.sort((a, b) => a.name.localeCompare(b.name))
         : citiesCopy.sort((a, b) => {
-            const distanceA = calcDistanceToTelAviv({
-              longitude: a.coords.lng,
-              latitude: a.coords.lat,
-            });
-            const distanceB = calcDistanceToTelAviv({
-              longitude: b.coords.lng,
-              latitude: b.coords.lat,
-            });
-            return distanceA - distanceB;
+          const distanceA = calcDistanceToTelAviv({
+            longitude: a.coords.lng,
+            latitude: a.coords.lat,
           });
+          const distanceB = calcDistanceToTelAviv({
+            longitude: b.coords.lng,
+            latitude: b.coords.lat,
+          });
+          return distanceA - distanceB;
+        });
     onSortChanged(sortedCities);
   }, [selectedMethod, cities]);
 
@@ -38,15 +38,13 @@ const Sort: React.FC<ISortProps> = ({ cities, onSortChanged }) => {
   };
 
   return (
-    <>
-      <UnderlineToggle<SortMethod>
-        title={"Sort By"}
-        options={sortOptions}
-        getLabel={(option) => option}
-        defaultOption="name"
-        onSelect={(selected) => handleMethodChange(selected)}
-      />
-    </>
+    <UnderlineToggle<SortMethod>
+      title={"Sort By"}
+      options={sortOptions}
+      getLabel={(option) => option}
+      defaultOption="name"
+      onSelect={(selected) => handleMethodChange(selected)}
+    />
   );
 };
 
