@@ -49,17 +49,17 @@ const Filters: React.FC<IFiltersProps> = ({ cities, onFiltersChanged }) => {
   }, [filters.citySearchText, filters.continent, cities]);
 
   return (
-    <div className="filters-container">
+    <>
       <div>
-      <h3> Search </h3>
-      <input
-        type="text"
-        onChange={(e) => handleSearch(e.target.value)}
-        placeholder="search a city by name or country"
+        <h3> Search </h3>
+        <input
+          type="text"
+          onChange={(e) => handleSearch(e.target.value)}
+          placeholder="search a city by name or country"
         />
-        </div>
+      </div>
       <ContinentDropdown onSelect={handleContinentChange} />
-    </div>
+    </>
   );
 };
 
