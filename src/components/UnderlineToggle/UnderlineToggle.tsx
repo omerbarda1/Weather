@@ -31,7 +31,7 @@ function UnderlineToggle<T>({
   return (
     <div className="container">
       <h3>{title}</h3>
-      <div style={{ display: "flex", gap: "12px" }}>
+      <div className="text">
         {options.map((option, index) => {
           const isSelected = selected === option;
           return (

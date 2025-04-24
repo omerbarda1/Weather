@@ -3,3 +3,8 @@
   flex-direction: column;
   align-items: start;
 }
+.text{
+  padding: 10px 14px;
+  display: flex;
+  gap: 12px
+}

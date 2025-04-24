@@ -18,7 +18,7 @@ const ContinentDropdown: React.FC<ContinentDropdownProps> = ({ onSelect }) => {
   return (
     <div>
       <h3> continent </h3>
-      <select value={selected} onChange={handleChange}>
+      <select className="custom-field" value={selected} onChange={handleChange}>
         <option value="">Select a continent</option>
         {continents.map((continent) => (
           <option key={continent} value={continent}>

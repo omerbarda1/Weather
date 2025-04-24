@@ -54,8 +54,9 @@ const Filters: React.FC<IFiltersProps> = ({ cities, onFiltersChanged }) => {
         <h3> Search </h3>
         <input
           type="text"
+          className="custom-field"
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="search a city by name or country"
+          placeholder="search a city"
         />
       </div>
       <ContinentDropdown onSelect={handleContinentChange} />
