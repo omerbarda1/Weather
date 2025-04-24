@@ -9,19 +9,29 @@ const CityFullDisplay: React.FC = () => {
   const city = location.state?.city as City | undefined;
   const { degree } = useTemperature();
 
-  const { data: temprature, isLoading } = useQuery({
-    queryKey: city ? ['city', city.coords.lat, city.coords.lng] : ['city', 'none'],
-    queryFn: () => getCityTempreture(city!.coords.lat, city!.coords.lng, degree),
+  const {
+    data: temperature,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: city
+      ? ["city", city.coords.lat, city.coords.lng]
+      : ["city", "none"],
+    queryFn: () =>
+      getCityTempreture(city!.coords.lat, city!.coords.lng, degree),
     enabled: !!city,
   });
 
   if (!city) return <div>No city data</div>;
+  if (error) return <div>error in loading temperature</div>;
 
   const { name, country, description, image } = city;
   return (
     <div>
       <h1>{name}</h1>
-      <h2>Temperature: {isLoading ? "Loading..." : `${temprature}${degree}°`}</h2>
+      <h2>
+        Temperature: {isLoading ? "Loading..." : `${temperature}${degree}°`}
+      </h2>
       <p>{country}</p>
       <img src={image} alt={name} />
       <p>{description}</p>
